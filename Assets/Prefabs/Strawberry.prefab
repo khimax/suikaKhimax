@@ -165,3 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e2ee02c6a64064594ccc671d3ebea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextFruitPrefab: {fileID: 2557383865978400358, guid: 740abfc0aaaa6bd42b1499c038f6100d, type: 3}

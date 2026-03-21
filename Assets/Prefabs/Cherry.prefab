@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2621797884bce4b9c39dbfdee9a1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextFruitPrefab: {fileID: 7164821309945326580, guid: 01e2db84c85ce33489897e05284ebbd4, type: 3}
 --- !u!50 &-5352926510415963918
 Rigidbody2D:
   serializedVersion: 5
