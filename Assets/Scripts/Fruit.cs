@@ -4,10 +4,23 @@ using UnityEngine;
 public abstract class Fruit : MonoBehaviour
 {
     protected abstract float size { get; }
+    protected abstract int score { get; }
 
     private bool isMerging = false;
 
+    private bool isInvinsible = true;
+
     [SerializeField] protected GameObject nextFruitPrefab;
+
+    private void InvinsibleOff()
+    {
+        isInvinsible = false;
+    }
+
+    public void StartInvinsibleTimer()
+    {
+        Invoke(nameof(InvinsibleOff), 2f);
+    }
 
     protected void ApplySize ()
     {
@@ -25,6 +38,9 @@ public abstract class Fruit : MonoBehaviour
         //удаляем предыдущие
         Destroy(gameObject);
         Destroy(otherFruit.gameObject);
+
+        //добавляем очки
+        ScoreManager.Instance.AddScore(score);
 
         Debug.Log("Слияние!");
 
@@ -58,6 +74,16 @@ public abstract class Fruit : MonoBehaviour
             //Debug.Log(GetType());
             Merge(otherFruit);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Barrier") && !isInvinsible)
+        {
+            Controller.Instance.GameOver();
+            Debug.Log("есть пробитие");
+        }
+        Debug.Log("возможно пробитие");
     }
 
 }
