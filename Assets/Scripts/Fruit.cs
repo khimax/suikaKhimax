@@ -5,6 +5,7 @@ public abstract class Fruit : MonoBehaviour
 {
     protected abstract float size { get; }
 
+    private bool isMerging = false;
 
     [SerializeField] protected GameObject nextFruitPrefab;
 
@@ -46,9 +47,15 @@ public abstract class Fruit : MonoBehaviour
 
         if (GetInstanceID() < otherFruit.gameObject.GetInstanceID()) return;
 
+        if (isMerging || otherFruit.isMerging) return;
+
         if (GetType() == otherFruit.GetType())
         {
-            Debug.Log(GetType());
+            //Debug.Log(isMerging);
+            //чтобы не сливалось три фрукта
+            isMerging = true;
+            otherFruit.isMerging = true;
+            //Debug.Log(GetType());
             Merge(otherFruit);
         }
     }
